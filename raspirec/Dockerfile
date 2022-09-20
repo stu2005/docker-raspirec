@@ -25,7 +25,7 @@ FROM collelog/recfsusb2n-build:epgdatacapbon-latest-debian AS recfsusb2n-image
 FROM collelog/libarib25-build:epgdatacapbon-latest-debian AS libarib25-image
 
 # final image
-FROM debian:latest
+FROM debian:stable-slim
 COPY --from=epgdump-build /epgdump/epgdump /usr/local/bin/epgdump
 COPY --from=raspirec-source /raspirec /root/raspirec
 COPY --from=recfsusb2n-image /build /
