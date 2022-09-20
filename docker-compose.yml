@@ -1,0 +1,21 @@
+services:
+  raspirec:
+    image: stu2005/raspirec:latest
+    container_name: raspirec
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - raspirec:/root/raspirec
+      - /opt/raspirec/config.rb:/root/.config/raspirec/config.rb
+    ports:
+      - 4567:4567
+    environment:
+      TZ: Asia/Tokyo
+    devices:
+      - /dev/bus:/dev/bus
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-file: "2"
+        max-size: "10m"
+        compress: "true"
